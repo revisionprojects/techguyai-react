@@ -5,16 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "react-scripts build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "vercel-dev": "vercel dev",
-    "seed-db": "node scripts/seed-database.js"
+    "seed-db": "node scripts/seed-database.js",
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@types/js-cookie": "^3.0.6",
     "@vercel/node": "^3.2.18",
     "@vercel/postgres": "^0.10.0",
+    "axios": "^0.21.1",
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "js-cookie": "^3.0.5",
@@ -28,7 +32,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
+    "@types/axios": "^0.14.0",
     "@types/node": "^22.7.4",
+    "@types/node-fetch": "^2.6.11",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",

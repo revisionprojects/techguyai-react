@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchVideos } from '../api/videos';
 
-const VideoGallery: React.FC = () => {
+interface Video {
+  id: number;  // or string
+  title: string;
+  // Add other properties
+}
+
+function VideoGallery() {
+  const [videos, setVideos] = useState<Video[]>([]);
+
+  useEffect(() => {
+    async function loadVideos() {
+      try {
+        const data = await fetchVideos();
+        setVideos(data);
+      } catch (error) {
+        console.error('Failed to load videos:', error);
+      }
+    }
+    loadVideos();
+  }, []);
+
   return (
-    <div className="video-gallery">
-      <div className="video-item">
-        {/* Video 1 */}
-      </div>
-      <div className="video-item">
-        {/* Video 2 */}
-      </div>
-      <div className="video-item">
-        {/* Video 3 */}
-      </div>
-      {/* Add more video items as needed */}
+    <div>
+      {videos.map((video: Video) => (
+        <div key={video.id}>{video.title}</div>
+      ))}
     </div>
   );
-};
+}
 
 export default VideoGallery;
