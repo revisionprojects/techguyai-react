@@ -1,12 +1,20 @@
 /* ... existing styles ... */
 
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+:root {
+  --primary-color: #6882FD;
+  --text-color: #333;
+  --background-color: #f0f0f0;
+  --card-background: rgba(255, 255, 255, 0.8);
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .app-container {
+  background-color: var(--background-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,9 +25,11 @@ body, html {
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: #f0f0f0;
+  background-color: var(--primary-color) !important; /* Use !important to override any conflicting styles */
+  color: white;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.3s;
 }
 
 .top-bar-content {
@@ -41,11 +51,11 @@ body, html {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #333;
+  color: white;
 }
 
 body.dark-mode .top-bar {
-  background-color: #1c2333; /* A slightly lighter shade for contrast */
+  background-color: #2c3e50;
 }
 
 body.dark-mode .top-bar button {
@@ -70,6 +80,7 @@ main {
   justify-content: center;
   color: white;
   text-align: center;
+  background-color: var(--primary-color);
 }
 
 .hero-content {
@@ -154,7 +165,7 @@ main {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 50%;
@@ -176,13 +187,17 @@ main {
 
 /* Dark mode styles */
 body.dark-mode {
+  --primary-color: #1c2333;
+  --text-color: #f0f0f0;
+  --background-color: #121212;
+  --card-background: rgba(60, 60, 60, 0.8);
   background-color: #101622;
   color: #f0f0f0;
 }
 
 body.dark-mode .video-card {
-  background-color: #1c2333;
-  color: #f0f0f0;
+  background-color: var(--card-background);
+  color: var(--text-color);
 }
 
 body.dark-mode .top-btn {
@@ -193,78 +208,10 @@ body.dark-mode .top-btn:hover {
   background-color: #34495e;
 }
 
-/* Video Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+body.dark-mode .hero-section {
+  background-color: #2c3e50;
 }
 
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 800px;
-  max-height: 90vh;
-  overflow: auto;
-  position: relative;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #333;
-  z-index: 1;
-}
-
-body.dark-mode .modal-content {
-  background-color: #1c2333;
-  color: #f0f0f0;
-}
-
-body.dark-mode .close-button {
-  color: #f0f0f0;
-}
-
-.video-container {
-  position: relative;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-}
-
-.video-container > div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-/* Dark mode styles for modal */
-body.dark-mode .modal-content {
-  background-color: #1c2333;
-  color: #f0f0f0;
-}
-
-body.dark-mode .close-button {
-  color: #f0f0f0;
-}
-
-/* You might want to adjust other elements for dark mode as well */
 body.dark-mode .hero-content {
   background-color: rgba(16, 22, 34, 0.7); /* Semi-transparent dark background */
 }
@@ -279,11 +226,12 @@ body.dark-mode h2 {
 
 /* VideoCard styles */
 .video-card {
-  background-color: rgba(240, 240, 240, 0.7);
+  background-color: var(--card-background);
+  border: 1px solid var(--primary-color);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s;
   cursor: pointer;
 }
 
@@ -304,10 +252,11 @@ body.dark-mode h2 {
 .video-card h3 {
   margin: 0;
   font-size: 0.8rem; /* Slightly smaller font size */
-  color: #333;
+  color: var(--text-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.3s;
 }
 
 /* Specific styles for hero section video cards */
@@ -322,11 +271,11 @@ body.dark-mode h2 {
 
 /* Dark mode styles */
 body.dark-mode .video-card {
-  background-color: #1c2333;
+  background-color: var(--card-background);
 }
 
 body.dark-mode .video-card h3 {
-  color: #f0f0f0;
+  color: var(--text-color);
 }
 
 body.dark-mode .hero-video-gallery .video-card {
