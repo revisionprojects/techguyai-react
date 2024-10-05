@@ -10,7 +10,7 @@ const TopBar: React.FC<TopBarProps> = ({ isDarkMode, toggleDarkMode }) => {
   return (
     <div className="top-bar">
       <div className="top-bar-content">
-        <h1>AI Future</h1>
+        <h1>TechGuy.Ai</h1>
         <button onClick={toggleDarkMode}>
           {isDarkMode ? <FaSun /> : <FaMoon />}
         </button>

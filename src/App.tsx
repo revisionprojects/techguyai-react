@@ -4,6 +4,7 @@ import TopBar from './components/TopBar';
 import VideoCard from './components/VideoCard';
 import VideoModal from './components/VideoModal';
 import { FaArrowUp } from 'react-icons/fa';
+import { useCookies } from './hooks/useCookies';
 
 // AI-related YouTube videos
 const videos = [
@@ -21,6 +22,7 @@ function App() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [showTopBtn, setShowTopBtn] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const { setCookie, getCookie } = useCookies();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,14 +40,25 @@ function App() {
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
     document.body.classList.toggle('dark-mode');
+    // Save dark mode preference in a cookie
+    setCookie('darkMode', (!isDarkMode).toString(), { expires: 365 });
   };
+
+  // Load dark mode preference from cookie on initial render
+  useEffect(() => {
+    const darkModePref = getCookie('darkMode');
+    if (darkModePref === 'true') {
+      setIsDarkMode(true);
+      document.body.classList.add('dark-mode');
+    }
+  }, [getCookie]);
 
   return (
     <div className={`app-container ${isDarkMode ? 'dark-mode' : ''}`}>
       <TopBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <div className="hero-section">
         <div className="hero-content">
-          <h1>Welcome to AI Future</h1>
+          <h1>Welcome to TechGuy.AI</h1>
           <p>Explore the possibilities of artificial intelligence</p>
         </div>
         <div className="hero-video-gallery">
