@@ -1,21 +1,12 @@
-import { useState, useEffect } from 'react';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import React from 'react';
+import { FaMoon, FaSun } from 'react-icons/fa';
 
-function TopBar() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved ? JSON.parse(saved) : false;
-  });
+interface TopBarProps {
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
+}
 
-  useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
-    document.body.classList.toggle('dark-mode', isDarkMode);
-  }, [isDarkMode]);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
+const TopBar: React.FC<TopBarProps> = ({ isDarkMode, toggleDarkMode }) => {
   return (
     <div className="top-bar">
       <div className="top-bar-content">
@@ -26,6 +17,6 @@ function TopBar() {
       </div>
     </div>
   );
-}
+};
 
 export default TopBar;

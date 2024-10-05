@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface VideoCardProps {
   title: string;
   thumbnail: string;
@@ -8,7 +10,9 @@ const VideoCard: React.FC<VideoCardProps> = ({ title, thumbnail, onOpen }) => {
   return (
     <div className="video-card" onClick={onOpen}>
       <img src={thumbnail} alt={title} />
-      <h3>{title}</h3>
+      <div className="video-card-content">
+        <h3>{title}</h3>
+      </div>
     </div>
   );
 };

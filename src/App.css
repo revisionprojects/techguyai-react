@@ -59,11 +59,13 @@ main {
 }
 
 .hero-section {
+  position: relative;
   height: 100vh;
-  background-image: url('src/assets/ai-hero-image.jpg'); /* Replace with your image path */
+  background-image: url('src/assets/ai-hero-image.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
@@ -71,58 +73,77 @@ main {
 }
 
 .hero-content {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 2rem;
-  border-radius: 10px;
+  margin-bottom: 2rem;
 }
 
-body.dark-mode .hero-content {
-  background-color: rgba(16, 22, 34, 0.7); /* Semi-transparent dark background */
+.hero-video-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: 90%;
+  max-width: 1200px;
+  padding: 1rem;
+  margin: 0 auto;
 }
 
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+.hero-video-gallery .video-card {
+  width: 100%;
+  height: auto;
 }
 
-.hero-content p {
-  font-size: 1.5rem;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-video-gallery {
+    grid-template-columns: 1fr;
+  }
 }
 
-.content {
-  padding: 2rem;
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-video-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero-video-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Video Gallery */
 .video-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* or any other layout you prefer */
   gap: 2rem;
-  padding: 2rem 0;
-}
-
-.video-card {
-  background-color: #f0f0f0;
+  padding: 2rem;
+  position: absolute;
+  bottom: 10%; /* Adjust this value to position the gallery vertically */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.video-card:hover {
-  transform: translateY(-5px);
+.video-item {
+  aspect-ratio: 16 / 9;
+  background-color: #333;
+  border-radius: 8px;
 }
 
-.video-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+  }
 }
 
-.video-card h3 {
-  padding: 1rem;
-  margin: 0;
-  font-size: 1rem;
+@media (max-width: 480px) {
+  .video-gallery {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Return to Top Button */
@@ -252,3 +273,72 @@ body.dark-mode h2 {
 /* If you have any other specific elements that need color adjustment in dark mode, add them here */
 
 /* ... rest of your existing styles ... */
+
+/* VideoCard styles */
+.video-card {
+  background-color: rgba(240, 240, 240, 0.7);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+}
+
+.video-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.video-card-content {
+  padding: 0.5rem;
+}
+
+.video-card h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Specific styles for hero section video cards */
+.hero-video-gallery .video-card {
+  background-color: rgba(240, 240, 240, 0.8);
+}
+
+.hero-video-gallery .video-card h3 {
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Dark mode styles */
+body.dark-mode .video-card {
+  background-color: #1c2333;
+}
+
+body.dark-mode .video-card h3 {
+  color: #f0f0f0;
+}
+
+body.dark-mode .hero-video-gallery .video-card {
+  background-color: rgba(28, 35, 51, 0.8);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-card h3 {
+    font-size: 0.9rem;
+  }
+  
+  .hero-video-gallery .video-card h3 {
+    font-size: 0.8rem;
+  }
+}
+
+/* ... other styles ... */
