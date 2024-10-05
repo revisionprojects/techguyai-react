@@ -1,15 +1,11 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
-import { query } from '../src/utils/db';
+import { NextResponse } from 'next/server';
+import { sql } from '@vercel/postgres';
 
-export default async function handler(
-  request: VercelRequest,
-  response: VercelResponse
-) {
+export async function GET() {
   try {
-    const result = await query('SELECT * FROM videos');
-    return response.status(200).json({ videos: result.rows });
+    const result = await sql`SELECT * FROM videos;`;
+    return NextResponse.json(result.rows);
   } catch (error) {
-    console.error('Error in videos API:', error);
-    return response.status(500).json({ error: 'Internal Server Error' });
+    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
   }
 }
