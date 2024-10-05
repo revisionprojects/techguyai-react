@@ -9,9 +9,16 @@ interface Video {
 }
 
 export async function fetchVideos(): Promise<Video[]> {
+  console.log('Fetching videos from API');
+  
   try {
-    const response = await axios.get<Video[]>(`${process.env.REACT_APP_API_URL}/videos`);
-    return response.data;
+    const response = await fetch('/api/videos');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log('Fetched videos:', data);
+    return data;
   } catch (error) {
     console.error('Error fetching videos:', error);
     throw error;
