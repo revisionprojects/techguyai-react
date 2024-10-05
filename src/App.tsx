@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import TopBar from './components/TopBar';
 import VideoCard from './components/VideoCard';
@@ -58,7 +58,7 @@ function App() {
       <TopBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <div className="hero-section">
         <div className="hero-content">
-          <h1>Welcome to TechGuy.AI</h1>
+          <h1>Welcome to AI Future</h1>
           <p>Explore the possibilities of artificial intelligence</p>
         </div>
         <div className="hero-video-gallery">
