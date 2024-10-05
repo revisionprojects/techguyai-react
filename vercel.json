@@ -4,13 +4,13 @@
         {
             "src": "package.json",
             "use": "@vercel/static-build",
-            "config": { "distDir": "build" }
+            "config": { "distDir": "dist" }
         }
     ],
     "routes": [
-        { "src": "/static/(.*)", "dest": "/static/$1" },
-        { "src": "/favicon.ico", "dest": "/favicon.ico" },
-        { "src": "/manifest.json", "dest": "/manifest.json" },
+        { "handle": "filesystem" },
+        { "src": "/assets/(.*)", "dest": "/assets/$1" },
+        { "src": "/(.*).(js|css|ico)", "dest": "/$1.$2" },
         { "src": "/(.*)", "dest": "/index.html" }
     ]
 }
