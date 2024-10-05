@@ -71,7 +71,7 @@ main {
 .hero-section {
   position: relative;
   height: 100vh;
-  background-image: url('public/ai-hero-image.jpg');
+  background-image: url('/ai-hero-image.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -275,11 +275,11 @@ body.dark-mode .video-card {
   background-color: var(--card-background);
 }
 
-body.dark-mode .video-card h3 {
+body.dark.mode .video-card h3 {
   color: var(--text-color);
 }
 
-body.dark-mode .hero-video-gallery .video-card {
+body.dark.mode .hero-video-gallery .video-card {
   background-color: rgba(28, 35, 51, 0.8);
 }
 

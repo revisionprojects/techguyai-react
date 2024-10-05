@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import TopBar from './components/TopBar';
 import VideoCard from './components/VideoCard';
