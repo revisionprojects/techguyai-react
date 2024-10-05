@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS videos (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  video_id VARCHAR(50) NOT NULL,
+  thumbnail VARCHAR(255) NOT NULL
+);
