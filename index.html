@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Update the CSP meta tag -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'none';
+      script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.youtube.com https://s.ytimg.com;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' https: data:;
+      font-src 'self';
+      connect-src 'self';
+      media-src 'self' https://www.youtube.com;
+      frame-src https://www.youtube.com;
+      base-uri 'self';
+      form-action 'self'
+    ">
+    <title>Your AI Future App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Add nonce to your script tags -->
+    <script type="module" src="/src/main.tsx" nonce="{{NONCE}}"></script>
+  </body>
+</html>
