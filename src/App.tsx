@@ -3,6 +3,7 @@ import './App.css';
 import TopBar from './components/TopBar';
 import VideoCard from './components/VideoCard';
 import VideoModal from './components/VideoModal';
+import CookieConsent from './components/CookieConsent';
 import { FaArrowUp } from 'react-icons/fa';
 import { useCookies } from './hooks/useCookies';
 
@@ -83,6 +84,7 @@ function App() {
           <FaArrowUp />
         </button>
       )}
+      <CookieConsent />
     </div>
   );
 }

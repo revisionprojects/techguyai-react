@@ -1,37 +1,22 @@
 import { useState, useCallback } from 'react';
-import * as cookieUtils from '../utils/cookieUtils';
+import Cookies from 'js-cookie';
 
 export const useCookies = () => {
-  const [cookies, setCookies] = useState<{ [key: string]: string }>(cookieUtils.getAllCookies());
-
-  const updateCookies = useCallback(() => {
-    setCookies(cookieUtils.getAllCookies());
-  }, []);
+  const [cookies, setCookies] = useState<{ [key: string]: string }>(Cookies.get());
 
   const setCookie = useCallback((name: string, value: string, options = {}) => {
-    cookieUtils.setCookie(name, value, options);
-    updateCookies();
-  }, [updateCookies]);
+    Cookies.set(name, value, options);
+    setCookies(Cookies.get());
+  }, []);
 
   const getCookie = useCallback((name: string) => {
-    return cookieUtils.getCookie(name);
+    return Cookies.get(name);
   }, []);
 
   const removeCookie = useCallback((name: string, options = {}) => {
-    cookieUtils.removeCookie(name, options);
-    updateCookies();
-  }, [updateCookies]);
+    Cookies.remove(name, options);
+    setCookies(Cookies.get());
+  }, []);
 
-  const clearAllCookies = useCallback(() => {
-    cookieUtils.clearAllCookies();
-    updateCookies();
-  }, [updateCookies]);
-
-  return {
-    cookies,
-    setCookie,
-    getCookie,
-    removeCookie,
-    clearAllCookies,
-  };
+  return { cookies, setCookie, getCookie, removeCookie };
 };
